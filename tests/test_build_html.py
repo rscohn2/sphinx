@@ -418,6 +418,9 @@ def test_html5_output(app, cached_etree_parse, fname, expect):
     print(app.outdir / fname)
     check_xpath(cached_etree_parse(app.outdir / fname), fname, *expect)
 
+@pytest.mark.sphinx('html', parallel=2)
+def test_html_parallel(app):
+    app.build()
 
 @pytest.mark.sphinx('html')
 @pytest.mark.test_params(shared_result='test_build_html_output')
